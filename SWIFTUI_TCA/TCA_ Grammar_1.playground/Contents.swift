@@ -23,7 +23,7 @@ import SwiftUI
 ///  - var body는 다른 reducer과 조합해서 사용할 수 있으며, reducer를 조합하고 기능을 구성하는 역할
 ///  - func는 로직을 func 내부에 구현하며, 다른 reducer하고 조합하지 않을 때 사용
 
-struct Reducer: /*ReducerProtocol*/ {
+struct Reducer /*: ReducerProtocol*/ {
     struct State: Equatable {
         var count: Int
     }
