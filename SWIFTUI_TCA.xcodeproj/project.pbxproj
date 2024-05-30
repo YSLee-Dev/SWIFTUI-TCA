@@ -14,6 +14,7 @@
 		FF84AF352BFF303300CCEEA7 /* SWIFTUI_TCATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF84AF342BFF303300CCEEA7 /* SWIFTUI_TCATests.swift */; };
 		FF84AF3F2BFF303300CCEEA7 /* SWIFTUI_TCAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF84AF3E2BFF303300CCEEA7 /* SWIFTUI_TCAUITests.swift */; };
 		FF84AF412BFF303300CCEEA7 /* SWIFTUI_TCAUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF84AF402BFF303300CCEEA7 /* SWIFTUI_TCAUITestsLaunchTests.swift */; };
+		FF9004572C08526200EED08E /* ContentFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9004562C08526200EED08E /* ContentFeature.swift */; };
 		FF9369892C04632000FE5FBB /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FF9369882C04632000FE5FBB /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +47,8 @@
 		FF84AF3A2BFF303300CCEEA7 /* SWIFTUI_TCAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWIFTUI_TCAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF84AF3E2BFF303300CCEEA7 /* SWIFTUI_TCAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWIFTUI_TCAUITests.swift; sourceTree = "<group>"; };
 		FF84AF402BFF303300CCEEA7 /* SWIFTUI_TCAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWIFTUI_TCAUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FF9369862C04627C00FE5FBB /* TCA_ Grammar.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "TCA_ Grammar.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		FF9004562C08526200EED08E /* ContentFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFeature.swift; sourceTree = "<group>"; };
+		FF9369862C04627C00FE5FBB /* TCA_ Grammar_1.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "TCA_ Grammar_1.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,9 +100,10 @@
 		FF84AF212BFF303100CCEEA7 /* SWIFTUI_TCA */ = {
 			isa = PBXGroup;
 			children = (
-				FF9369862C04627C00FE5FBB /* TCA_ Grammar.playground */,
+				FF9369862C04627C00FE5FBB /* TCA_ Grammar_1.playground */,
 				FF84AF222BFF303100CCEEA7 /* SWIFTUI_TCAApp.swift */,
 				FF84AF242BFF303100CCEEA7 /* ContentView.swift */,
+				FF9004562C08526200EED08E /* ContentFeature.swift */,
 				FF84AF262BFF303300CCEEA7 /* Assets.xcassets */,
 				FF84AF282BFF303300CCEEA7 /* SWIFTUI_TCA.entitlements */,
 				FF84AF292BFF303300CCEEA7 /* Preview Content */,
@@ -271,6 +274,7 @@
 			files = (
 				FF84AF252BFF303100CCEEA7 /* ContentView.swift in Sources */,
 				FF84AF232BFF303100CCEEA7 /* SWIFTUI_TCAApp.swift in Sources */,
+				FF9004572C08526200EED08E /* ContentFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
