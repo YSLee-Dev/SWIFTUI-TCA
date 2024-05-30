@@ -48,6 +48,7 @@
 		FF84AF3E2BFF303300CCEEA7 /* SWIFTUI_TCAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWIFTUI_TCAUITests.swift; sourceTree = "<group>"; };
 		FF84AF402BFF303300CCEEA7 /* SWIFTUI_TCAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWIFTUI_TCAUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FF9004562C08526200EED08E /* ContentFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFeature.swift; sourceTree = "<group>"; };
+		FF9004582C0858AE00EED08E /* TCA_ Grammar_2.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "TCA_ Grammar_2.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FF9369862C04627C00FE5FBB /* TCA_ Grammar_1.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "TCA_ Grammar_1.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
@@ -100,6 +101,7 @@
 		FF84AF212BFF303100CCEEA7 /* SWIFTUI_TCA */ = {
 			isa = PBXGroup;
 			children = (
+				FF9004582C0858AE00EED08E /* TCA_ Grammar_2.playground */,
 				FF9369862C04627C00FE5FBB /* TCA_ Grammar_1.playground */,
 				FF84AF222BFF303100CCEEA7 /* SWIFTUI_TCAApp.swift */,
 				FF84AF242BFF303100CCEEA7 /* ContentView.swift */,
