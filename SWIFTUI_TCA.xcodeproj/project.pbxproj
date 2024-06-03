@@ -78,6 +78,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF7C57622C0D9CF80092B76C /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				FF84AF242BFF303100CCEEA7 /* ContentView.swift */,
+				FF9004562C08526200EED08E /* ContentFeature.swift */,
+			);
+			path = ContentView;
+			sourceTree = "<group>";
+		};
 		FF84AF162BFF303100CCEEA7 = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +113,7 @@
 				FF9004582C0858AE00EED08E /* TCA_ Grammar_2.playground */,
 				FF9369862C04627C00FE5FBB /* TCA_ Grammar_1.playground */,
 				FF84AF222BFF303100CCEEA7 /* SWIFTUI_TCAApp.swift */,
-				FF84AF242BFF303100CCEEA7 /* ContentView.swift */,
-				FF9004562C08526200EED08E /* ContentFeature.swift */,
+				FF7C57622C0D9CF80092B76C /* ContentView */,
 				FF84AF262BFF303300CCEEA7 /* Assets.xcassets */,
 				FF84AF282BFF303300CCEEA7 /* SWIFTUI_TCA.entitlements */,
 				FF84AF292BFF303300CCEEA7 /* Preview Content */,
