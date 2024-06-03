@@ -10,12 +10,12 @@ import ComposableArchitecture
 
 @main
 struct SWIFTUI_TCAApp: App {
-    var body: some Scene {
+  var body: some Scene {
         WindowGroup {
             TabView {
                 ContentView(
-                    store: Store(initialState: Feature.State()){
-                        Feature()
+                    store: Store(initialState: ContentFeature.State()){
+                        ContentFeature()
                     }
                 )
                 .tabItem {

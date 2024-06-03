@@ -15,7 +15,7 @@ struct SearchViewFeature: Reducer {
         var isBtnOn: Bool = false
     }
     
-    enum Action: BindableAction {
+    enum Action: BindableAction, Equatable {
         case lastNameTFValueInserted(String)
         case btnIsEnableCheck
         case  binding(BindingAction<State>)

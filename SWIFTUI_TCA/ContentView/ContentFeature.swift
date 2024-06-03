@@ -8,7 +8,7 @@
 import Foundation
 import ComposableArchitecture
 
-struct Feature: Reducer {
+struct ContentFeature: Reducer {
     struct State: Equatable {
         // 현재 카운트를 저장하는 State
         var nowCount: Int = 0

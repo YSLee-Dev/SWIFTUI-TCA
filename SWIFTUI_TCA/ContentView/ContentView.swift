@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ContentView: View {
-    let store: StoreOf<Feature>
+    let store: StoreOf<ContentFeature>
     
     var body: some View {
         WithViewStore(self.store, observe: {$0}) { viewStore in
@@ -47,8 +47,8 @@ struct ContentView: View {
 
 #Preview {
     ContentView(
-        store: Store(initialState: Feature.State()){
-            Feature()
+        store: Store(initialState: ContentFeature.State()){
+            ContentFeature()
          }
     )
 }
