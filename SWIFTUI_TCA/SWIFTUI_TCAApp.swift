@@ -12,11 +12,25 @@ import ComposableArchitecture
 struct SWIFTUI_TCAApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(
-                store: Store(initialState: Feature.State()){
-                   Feature()
+            TabView {
+                ContentView(
+                    store: Store(initialState: Feature.State()){
+                        Feature()
+                    }
+                )
+                .tabItem {
+                    Text("Home")
                 }
-            )
+                
+                SearchView(
+                    store: Store(initialState: SearchViewFeature.State.init()) {
+                        SearchViewFeature()
+                    }
+                )
+                .tabItem {
+                    Text("Search")
+                }
+            }
         }
     }
 }
