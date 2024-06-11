@@ -19,3 +19,12 @@ struct ResultLoadManager: ResultLoadProtocol {
         ]
     }
 }
+
+struct ResultLoadPreviewManager: ResultLoadProtocol {
+    func querySearch(query: String) -> [String] {
+        [
+            query,
+            query
+        ]
+    }
+}
