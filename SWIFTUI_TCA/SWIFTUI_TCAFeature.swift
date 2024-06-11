@@ -12,11 +12,13 @@ struct SWIFTUI_TCAFeature: Reducer {
     struct State: Equatable {
         var contentView: ContentFeature.State
         var searchView: SearchViewFeature.State
+        var resultView: ResultViewFeature.State
     }
     
     enum Action: Equatable{
         case contentView(ContentFeature.Action)
         case searchView(SearchViewFeature.Action)
+        case resultView(ResultViewFeature.Action)
     }
     
     var body: some Reducer<State, Action> {
@@ -29,8 +31,19 @@ struct SWIFTUI_TCAFeature: Reducer {
             SearchViewFeature()
         }
         
+        Scope(state: \.resultView, action: /Action.resultView) {
+            ResultViewFeature()
+        }
+        
         Reduce { state, action in
             switch action {
+            case .searchView(let searchView):
+                switch searchView {
+                case .btnIsEnableCheck:
+                    return .send(.resultView(.searchBtnTapped(query: state.searchView.firstNameValue + state.searchView.lastNameValue)))
+                default: return .none
+                }
+                
             default: return .none
             }
         }

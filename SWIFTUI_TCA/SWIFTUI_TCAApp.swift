@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 @main
 struct SWIFTUI_TCAApp: App {
-    let store = Store(initialState: SWIFTUI_TCAFeature.State(contentView: .init(), searchView: .init())) {
+    let store = Store(initialState: SWIFTUI_TCAFeature.State(contentView: .init(), searchView: .init(), resultView: .init())) {
         SWIFTUI_TCAFeature()
     }
     
@@ -29,6 +29,13 @@ struct SWIFTUI_TCAApp: App {
                 )
                 .tabItem {
                     Text("Search")
+                }
+                
+                ResultView(
+                    store: self.store.scope(state: \.resultView, action: SWIFTUI_TCAFeature.Action.resultView)
+                )
+                .tabItem {
+                    Text("Result")
                 }
             }
         }
