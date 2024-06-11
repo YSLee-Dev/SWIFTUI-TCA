@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ResultLoadProtocol {
-    func querySearch(query: String) -> [String]
+    func querySearch(query: String) async throws-> [String]
 }

@@ -9,8 +9,9 @@ import Foundation
 import ComposableArchitecture
 
 struct ResultLoadManager: ResultLoadProtocol {
-    func querySearch(query: String) -> [String] {
-        [
+    func querySearch(query: String) async throws -> [String] {
+        try await Task.sleep(for: .seconds(1))
+        return [
             String(query.shuffled()),
             String(query.shuffled()),
             String(query.shuffled()),
@@ -21,7 +22,7 @@ struct ResultLoadManager: ResultLoadProtocol {
 }
 
 struct ResultLoadPreviewManager: ResultLoadProtocol {
-    func querySearch(query: String) -> [String] {
+    func querySearch(query: String) async throws -> [String] {
         [
             query,
             query
