@@ -15,12 +15,26 @@ struct ResultViewFeature: Reducer {
     
     enum Action: Equatable {
         case searchBtnTapped(query: String)
+        case newResultDataSuccess(data: [String])
     }
+    
+    @Dependency(\.resultLoad) var resultLoad
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            default: .none 
+            case .searchBtnTapped(let query):
+                state.isLoading = true
+                return .run { send in
+                    let result = try await self.resultLoad.querySearch(query: query)
+                    print("RUNRUN")
+                    await send(.newResultDataSuccess(data: result))
+                }
+                
+            case .newResultDataSuccess(let data):
+                state.searchResult = data
+                state.isLoading = false
+                return .none
             }
         }
     }

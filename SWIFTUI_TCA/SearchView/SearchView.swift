@@ -30,6 +30,7 @@ struct SearchView: View {
                 Button("Search Start") {
                     print("Btn Tapped")
                     print(viewStore.firstNameValue, viewStore.lastNameValue)
+                    viewStore.send(.searchBtnTapped)
                 }
                 .disabled(!viewStore.isBtnOn)
             }

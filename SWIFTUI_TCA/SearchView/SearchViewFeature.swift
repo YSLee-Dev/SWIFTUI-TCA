@@ -19,6 +19,7 @@ struct SearchViewFeature: Reducer {
         case lastNameTFValueInserted(String)
         case btnIsEnableCheck
         case  binding(BindingAction<State>)
+        case searchBtnTapped
     }
     
     var body: some Reducer<State, Action> {
