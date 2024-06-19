@@ -54,6 +54,7 @@
 		FF7C57662C0D9EA00092B76C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		FF7C57682C0D9EC50092B76C /* SearchViewFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewFeature.swift; sourceTree = "<group>"; };
 		FF7C576A2C0DA9420092B76C /* SWIFTUI_TCAFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWIFTUI_TCAFeature.swift; sourceTree = "<group>"; };
+		FF8380552C216EB7006C853A /* TCA_ Grammar_4.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "TCA_ Grammar_4.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FF84AF1F2BFF303100CCEEA7 /* SWIFTUI_TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWIFTUI_TCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF84AF222BFF303100CCEEA7 /* SWIFTUI_TCAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWIFTUI_TCAApp.swift; sourceTree = "<group>"; };
 		FF84AF242BFF303100CCEEA7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -173,8 +174,9 @@
 				FF9369862C04627C00FE5FBB /* TCA_ Grammar_1.playground */,
 				FF9004582C0858AE00EED08E /* TCA_ Grammar_2.playground */,
 				FFCBB2052C12F40400C9EE30 /* TCA_ Grammar_3.playground */,
-				FF84AF222BFF303100CCEEA7 /* SWIFTUI_TCAApp.swift */,
+				FF8380552C216EB7006C853A /* TCA_ Grammar_4.playground */,
 				FF7C576A2C0DA9420092B76C /* SWIFTUI_TCAFeature.swift */,
+				FF84AF222BFF303100CCEEA7 /* SWIFTUI_TCAApp.swift */,
 				FF84AF262BFF303300CCEEA7 /* Assets.xcassets */,
 				FF84AF282BFF303300CCEEA7 /* SWIFTUI_TCA.entitlements */,
 				FF84AF292BFF303300CCEEA7 /* Preview Content */,
