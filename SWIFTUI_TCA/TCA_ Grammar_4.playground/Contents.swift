@@ -11,7 +11,15 @@ import Foundation
 /// - 개발자는 어떤 작업을 어떤 스레드에서 실행할지 직접 결정해야 했었으며, 클로저를 통해 작업을 호출함
 /// - Thread는 다른 Thread의 작업이 언제 끝나는지 알 수 없었으며, 무한대의 Thread를 생성할 수 있었음
 /// - Thread는 Non-Blocking을 지원하지 않기 때문에 CPU의 경쟁을 일으킬 수 있었음
-///
+
+print("1. START")
+Thread.detachNewThread {
+    print("Thread를 이용한 비동기 처리")
+}
+print("1. END")
+
+print("\n")
+
 /// Non-Blocking?
 /// - 특정 작업이나 함수 호출이 다른 작업의 진행을 막지 않는 걸 의미
 ///
@@ -23,7 +31,28 @@ import Foundation
 ///
 /// 하지만
 /// - GCD 또한 각 스레드가 data race를 유발할 가능성이 남아있고, 무한대의 Thread를 생성 할 수도 있었음
-///
+
+print("2. START")
+let queue = DispatchQueue(label: "GCD", attributes: .concurrent)
+
+queue.sync {
+    Thread.sleep(forTimeInterval: 0.3)
+    print("GCD를 통한 비동기 처리1")
+}
+
+queue.async {
+    Thread.sleep(forTimeInterval: 0.1)
+    print("GCD를 통한 비동기 처리2")
+}
+
+queue.sync {
+    print("GCD를 통한 비동기 처리3")
+}
+
+print("2. END")
+Thread.sleep(forTimeInterval: 0.5)
+print("\n")
+
 /// 3. Swift Concurrency
 /// - 2021년 wwdc에서 공개된 방식으로, async, await 키워드로 Concurrency 코드를 작성할 수 있게됨
 /// - async은 함수를 정의할 때, 이 함수가 동시성 맥락을 가지고 있음을 알림
@@ -64,3 +93,62 @@ import Foundation
 /// - Actor를 메인 스레드에서 사용하고 싶을 경우 @MainActor 키워드를 붙여서 메인 스레드에서의 동작을 보장할 수 있음
 /// -> DispatchQueue.main과 상호작용이 가능함
 
+func wait() async {
+    try! await Task.sleep(for: .milliseconds(100))
+    print("aync/await를 사용한 비동기 처리 3")
+}
+
+print("3. START")
+print("aync/await를 사용한 비동기 처리 1")
+Task {
+    print("aync/await를 사용한 비동기 처리 2")
+    await wait()
+    print("aync/await를 사용한 비동기 처리 4")
+}
+print("3. END")
+
+Thread.sleep(forTimeInterval: 0.5)
+
+print("\n")
+
+actor Stock {
+    var count = 0
+    init(count: Int = 0) {
+        self.count = count
+    }
+    
+    func decrementCount() async {
+        count -= 1
+    }
+    
+    func incrementCount() async {
+        count += 1
+    }
+}
+
+var apple = Stock(count: 5)
+
+Task {
+    await withTaskGroup(of: Void.self) { group in
+        group.addTask {
+            await apple.decrementCount()
+            await print("현재 남은 사과의 개수 1", apple.count)
+        }
+        
+        group.addTask {
+            await apple.decrementCount()
+            await apple.decrementCount()
+            await apple.decrementCount()
+            await apple.decrementCount()
+            await apple.decrementCount()
+            await print("현재 남은 사과의 개수 2", apple.count)
+        }
+        
+        await group.waitForAll()
+    }
+}
+
+Task {
+    await apple.incrementCount()
+    await print("현재 남은 사과의 개수 3", apple.count)
+}
