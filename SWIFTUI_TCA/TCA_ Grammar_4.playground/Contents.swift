@@ -152,3 +152,10 @@ Task {
     await apple.incrementCount()
     await print("현재 남은 사과의 개수 3", apple.count)
 }
+
+/// Thread.sleep, Task.sleep
+/// - 두 함수 모두 진행을 잠시 멈출 수 있지만, 구조가 다름
+/// - Thread는 해당 함수가 실행하는 Thead 자체를 멈추는 것으로 Thead는 다른 작업을 수행할 수 없고, 이 작업은 취소될 수 없음
+/// - Task는 Thread 자체를 멈추는 것이 아닌 해당 Task를 멈추는 것으로, Task가 멈춘동안 Thread는 다른 처리가 가능하며, 이 작업은 도중에 취소할 수 있음
+///
+/// - Thread는 iOS 2.0 이상부터 사용이 가능하며, Task는 iOS 13.0부터 사용이 가능함
