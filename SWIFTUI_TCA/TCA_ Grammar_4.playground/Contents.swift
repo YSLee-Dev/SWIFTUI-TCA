@@ -159,3 +159,40 @@ Task {
 /// - Task는 Thread 자체를 멈추는 것이 아닌 해당 Task를 멈추는 것으로, Task가 멈춘동안 Thread는 다른 처리가 가능하며, 이 작업은 도중에 취소할 수 있음
 ///
 /// - Thread는 iOS 2.0 이상부터 사용이 가능하며, Task는 iOS 13.0부터 사용이 가능함
+
+/// TCA는 .run을 통해 비동기 처리와 SideEffect를 처리할 수 있음
+/// - .run은 자체 catch 파라미터를 통해 에러를 관리할 수 있으며, 비동기 처리 작업 순위 또한 결정할 수 있음
+///
+/// - .run(operation:) {send in}
+/// - run을 통한 작업(클로저 내부)은 새로운 스레드에서 처리되며, 각 비동기 작업의 결과는 main 스레드로 돌아와 정의됨
+/// - await를 사용하여 일시중단 시점을 알려야 함(run 자체가 async 컨텍스트 내에서 실행됨)
+/// -> send를 이용하기 때문에 해당 처리가 가능함
+///
+/// send
+/// - MainActor로 Send<Action>의 인스턴스 값
+/// - Reduer가 state에 effect를 반영하기 위해서는 Main 스레드에서 작업이 이루어져야함
+/// -> state가 변경된 경우 View 자체도 다시 그리기 때문
+///
+/// - send 구조체로 action을 호출하여 연관 값으로 비동기 값을 넘길 경우 MainaActor로 인해 Main 스레드에서의 처리를 보장함
+///
+/// - MainActor는 특정 코드가 메인 스레드에서 작동됨을 보장하는 것
+///
+/// TCA에서 send를 사용하지 않은 경우 아래와 같은 코드로 작업해야하며, .run{send in}은 이를 편하게 사용할 수 있게 만들어줌
+
+var name1 = "KIM"
+func nameCheck(nameOne: inout String, mainCompletion: @escaping @MainActor (String) -> Void ) async {
+    var name2 = ""
+    let result = Task {
+        // name = "LEE"
+        // Task 내부에서는 함수 호출과 함께 생성된 지역변수를 사용할 수 없음 (상수는 O)
+        // - name이라는 변수가 언제 할당될지 모르기 때문 -> Task는 코드가 병렬로 실행되기 때문
+        
+        // print(nameOne)
+        // 파라미터를 변형할 수 있는 inout 파라미터는 Task 내부에서 사용할 수 없음
+        // - inout 파라미터는 함수 호출 동안 변수의 메모리 주소를 참조하여 수정하는 방식이기 때문
+        
+        return "PARK"
+    }
+    await print(result.value)
+    await mainCompletion(result.value)
+}
