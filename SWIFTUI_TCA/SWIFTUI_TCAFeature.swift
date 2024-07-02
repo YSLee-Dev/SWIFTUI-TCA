@@ -13,16 +13,19 @@ struct SWIFTUI_TCAFeature: Reducer {
         var contentView: ContentFeature.State
         var searchView: SearchViewFeature.State
         var resultView: ResultViewFeature.State
-        var nowSeletedTabbarIndex = 0
+        @BindingState var nowSeletedTabbarIndex = 0
     }
     
-    enum Action: Equatable{
+    enum Action: BindableAction, Equatable {
+        case binding(BindingAction<State>)
         case contentView(ContentFeature.Action)
         case searchView(SearchViewFeature.Action)
         case resultView(ResultViewFeature.Action)
     }
     
     var body: some Reducer<State, Action> {
+        BindingReducer()
+        
         Scope(state: \.contentView, action: /Action.contentView) {
             ContentFeature()
         }
@@ -40,6 +43,7 @@ struct SWIFTUI_TCAFeature: Reducer {
             case .searchView(let searchView):
                 switch searchView {
                 case .searchBtnTapped:
+                    state.nowSeletedTabbarIndex = 2
                     return .send(.resultView(.searchBtnTapped(query: state.searchView.firstNameValue + state.searchView.lastNameValue)))
                 default: return .none
                 }

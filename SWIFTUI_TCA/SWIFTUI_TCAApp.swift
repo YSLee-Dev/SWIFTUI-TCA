@@ -16,26 +16,31 @@ struct SWIFTUI_TCAApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TabView {
-                ContentView(
-                    store: self.store.scope(state: \.contentView, action: SWIFTUI_TCAFeature.Action.contentView)
-                )
-                .tabItem {
-                    Text("Home")
-                }
-                
-                SearchView(
-                    store: self.store.scope(state: \.searchView, action: SWIFTUI_TCAFeature.Action.searchView)
-                )
-                .tabItem {
-                    Text("Search")
-                }
-                
-                ResultView(
-                    store: self.store.scope(state: \.resultView, action: SWIFTUI_TCAFeature.Action.resultView)
-                )
-                .tabItem {
-                    Text("Result")
+            WithViewStore(self.store, observe: {$0}) { viewStore in
+                TabView(selection: viewStore.$nowSeletedTabbarIndex) {
+                    ContentView(
+                        store: self.store.scope(state: \.contentView, action: SWIFTUI_TCAFeature.Action.contentView)
+                    )
+                    .tabItem {
+                        Text("Home")
+                    }
+                    .tag(0)
+                    
+                    SearchView(
+                        store: self.store.scope(state: \.searchView, action: SWIFTUI_TCAFeature.Action.searchView)
+                    )
+                    .tabItem {
+                        Text("Search")
+                    }
+                    .tag(1)
+                    
+                    ResultView(
+                        store: self.store.scope(state: \.resultView, action: SWIFTUI_TCAFeature.Action.resultView)
+                    )
+                    .tabItem {
+                        Text("Result")
+                    }
+                    .tag(2)
                 }
             }
         }
