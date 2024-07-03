@@ -23,6 +23,7 @@ import SwiftUI
 ///
 /// - 정확성을 위해 ifLet은 자식 Reducer를 먼저 실행 후 부모 Reducer를 실행함
 /// - 자식 State가 도중에 nil이 되거나, alert 같은 action이 감지되면 자식 상태를 무시/취소함
+/// + 자녀 State가 Nil 값이 아닌 값을 가지는 건 개발자가 직접 init을 해주어야 함 (ifLet이 자식의 Action을 감지하더라도 직접 init 하지 않음)
 ///
 /// ifLetStore
 /// - 자식 State가 있을 때 자식 View를 보여주거나, 없다면 특정 View를 보여주고 싶을 때 사용
