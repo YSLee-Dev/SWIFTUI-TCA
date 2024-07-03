@@ -9,11 +9,12 @@ import ComposableArchitecture
 
 struct ResultViewFeature: Reducer {
     struct State: Equatable {
-        var searchResult: [String] = []
+        var resultDetailState: ResultDetailFeature.State?
         var isLoading: Bool = false
     }
     
     enum Action: Equatable {
+        case resultDetailAction(ResultDetailFeature.Action)
         case searchBtnTapped(query: String)
         case newResultDataSuccess(data: [String])
     }
@@ -25,6 +26,7 @@ struct ResultViewFeature: Reducer {
             switch action {
             case .searchBtnTapped(let query):
                 state.isLoading = true
+                state.resultDetailState  = nil
                 return .run { send in
                     let result = try await self.resultLoad.querySearch(query: query)
                     print("RUNRUN")
@@ -32,10 +34,16 @@ struct ResultViewFeature: Reducer {
                 }
                 
             case .newResultDataSuccess(let data):
-                state.searchResult = data
                 state.isLoading = false
+                state.resultDetailState = .init(searchResult: .init(uncheckedUniqueElements: []))
+                return .send(.resultDetailAction(.newResultDataSuccess(data: data)))
+                
+            default:
                 return .none
             }
+        }
+        .ifLet(\.resultDetailState, action: /Action.resultDetailAction) {
+            ResultDetailFeature()
         }
     }
 }
