@@ -125,20 +125,20 @@
 			path = ResultLoad;
 			sourceTree = "<group>";
 		};
-		FF51B3BF2C2D565600F96962 /* Sheet */ = {
+		FF51B3BF2C2D565600F96962 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
 				FF51B3C02C2D565F00F96962 /* ResultDetailView.swift */,
 				FF51B3C22C2D566400F96962 /* ResultDetailFeature.swift */,
 				FF4E625B2C33E11D005B3C3F /* ResultDetailModel.swift */,
 			);
-			path = Sheet;
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		FF7A277A2C16DFD200748749 /* ResultView */ = {
 			isa = PBXGroup;
 			children = (
-				FF51B3BF2C2D565600F96962 /* Sheet */,
+				FF51B3BF2C2D565600F96962 /* Detail */,
 				FF7A277B2C16DFE400748749 /* ResultView.swift */,
 				FF7A277D2C16DFFE00748749 /* ResultViewFeature.swift */,
 			);
