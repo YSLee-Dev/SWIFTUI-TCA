@@ -72,3 +72,42 @@ let path: [Path] = [
 /// - 다른 기능과 독립적으로 동작하기 때문에 단위 테스트 시 어려움
 /// -> 상호작용을 테스트 하기 어려움
 /// - sheet, popover, alert 등은 지원하지 않음
+
+/// 트리기반
+/// - 옵셔널, 열거형을 사용하여 Navigation을 모델링함
+/// - Navigation의 깊이를 간편하게 구성할 수 있고, 이후 작업은 SwiftUI가 전담함
+/// -> 앱 어느 곳으로도 딥링크 생성이 가능
+///
+/// @PresentatationState, PresentatationAction, ifLet 등을 사용하여 사용할 수 있음
+/// - 트리 기반은 자식의 State, Action과 밀접하게 관련이 있기 때문에 ifLet을 통해 자식의 Reducer를 생성해 주는 방식으로 이용
+/// -> 자식의 State가 Nil이 아닌경우 표시, Nil인경우 제거..
+///
+/// 옵셔널 방식
+/// - 부모 State에 @PresentatationState를 준수하는 자녀 State와 Action을 추가함
+/// - ifLet을 사용하여 자식 State가 Nil이 아닐 때 사용하는 Reducer를 정의
+/// - View에서는 각 연산자를 이용해 store를 주입하고, View를 생성시킴 (scope로 분리 필수)
+/// - sheet, alert, popover, navigationDestination 등이 존재
+///
+/// 열거형 방식
+/// - 도메인 모델링에 있어서는 좋지 않은 방식일 수 있음
+/// - 한 화면에서 옵셔널 값을 동시에 여러개 가지게 될 때 Nil이 아닌 상황이 발생할 수 있음
+/// -> A에서도 C화면으로, B에서도 C 화면으로 접근이 가능한 경우
+/// - 이러한 문제를 방지하기 위해 열거형으로 1차 모델링을 걸침
+///
+/// State를 Enum으로 정의함
+/// - 컴파일 시 하나의 목적지만 사용이 가능함을 증명함
+/// - 열거형 방식만 단독적으로 사용하는 것이 아닌, 옵셔널 방식과 같이 사용하여, 화면 Navigation만을 전담으로 하는 Reducer를 생성 후 해당 Reducer를 최상위 부모가 옵셔널로 소유함으로 사용하는 것이 효율적
+/// -> 화면 전담 Reducer는 이동 가능한 모든 방식을 Enum(state, Action)로 정의하며, body 내부에는 각각의 scope에 따른 Reducer를 정의함 -> 최상위 부모는 해당 Reducer를 옵셔널 값으로 사용하고 있다가 필요 시 case 값을 전달하여 특정 Feature만 init 하는 방식으로 사용
+///
+///  미리 Scope를 통해 Feature의 Reducer를 정의하면 메모리 낭비가 아닐까..?
+///  - TCA는 상태 변화가 이루어지기 전까지 초기화 되지 않음
+///  - 또한 Action으로 전달된 특정 Reducer만 초기화 됨
+///
+///  트리기반의 Navigation은 모든 형태의 Navigation을 단일 API 스타일로 통합할 수 있음
+///  - 부모, 자식의 Reducer를 통합하는건 ifLet으로 가능함
+///  -> push, pop, alert 등을 가리지 않음
+///
+///  Dismiss는 ifLet을 사용하기 때문에 자식의 State 값을 Nil로 주입하면, 종료됨
+///  - 자식 자체에서도 @Envioment 프로퍼티 래퍼의 Dismiss를 사용한 경우 내부에서 부모를 찾아서 Nil, false를 주입하여 Dismiss가 가능함
+///  -> 단, 비동기 작업 등 복잡한 로직에서는 사용이 어렵기 때문에 View 내부에서만 사용하는걸 권장함
+///  -> Reducer 내부에서 사용하는 Dismiss는 DismissEffect를 이용, 단, 비동기 작업 시 유의해야함
