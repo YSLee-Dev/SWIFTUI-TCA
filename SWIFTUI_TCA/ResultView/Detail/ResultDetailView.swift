@@ -26,12 +26,15 @@ struct ResultDetailView: View {
                         ForEach(viewStore.searchResult, id: \.id) { data in
                             HStack {
                                 Button("\(data.result)") {
-                                    
+                                    viewStore.send(.resultValueTapped(data.result))
                                 }
                                 .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                                 
                                 Spacer()
                             }
+                        }
+                        .sheet(store: self.store.scope(state: \.$resultDetailSheetState, action: {.resultDetailSheetAction($0)})) {store in
+                            ResultDetailSheetView(store: store)
                         }
                     }
                 }

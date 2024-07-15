@@ -6,9 +6,10 @@
 //
 
 import ComposableArchitecture
-import Foundation
+import SwiftUI
 
-struct ResultDetailFeature: Reducer {
+@Reducer
+struct ResultDetailFeature {
     struct State: Equatable {
         var searchResult: IdentifiedArrayOf<ResultDetailModel>
         @PresentationState var resultDetailSheetState: ResultDetailSheetFeature.State?
@@ -17,7 +18,7 @@ struct ResultDetailFeature: Reducer {
     enum Action: Equatable {
         case newResultDataSuccess(data: [String])
         case resultValueTapped(String)
-        case resultDetailSheetAction(ResultDetailSheetFeature.Action)
+        case resultDetailSheetAction(PresentationAction<ResultDetailSheetFeature.Action>)
     }
     
     var body: some Reducer<State, Action> {
@@ -30,9 +31,12 @@ struct ResultDetailFeature: Reducer {
             case .resultValueTapped(let value):
                 state.resultDetailSheetState = .init(userSeletedResult: value)
                 return .none
+                
+      
+            default: return .none
             }
         }
-        .ifLet(\.resultDetailSheetState, action: /Action.resultDetailSheetAction) {
+        .ifLet(\.$resultDetailSheetState, action: \.resultDetailSheetAction) {
             ResultDetailSheetFeature()
         }
     }
