@@ -15,18 +15,33 @@ struct ResultDetailView: View {
         WithViewStore(self.store, observe: {$0}) { viewStore in
             VStack {
                 HStack {
-                    Text("맘에 드는 결과를 하나 골라주세요.")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .padding(20)
+                    if let now = viewStore.nowShowingIndex {
+                        VStack(alignment: .leading){
+                            Text("현재 선택된 결과는 아래와 같으며, 변경하시려면 결과를 다시 눌러주세요.")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .padding(EdgeInsets(top: 20, leading: 20, bottom: 10, trailing: 20))
+                            
+                            Text("\(viewStore.searchResult[now].result)")
+                                .font(.title2)
+                                .fontWeight(.medium)
+                                .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                        }
+                        
+                    } else {
+                        Text("맘에 드는 결과를 하나 골라주세요.")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding(20)
+                    }
                     Spacer()
                 }
                 ScrollView {
                     LazyVStack {
-                        ForEach(viewStore.searchResult, id: \.id) { data in
+                        ForEach(viewStore.searchResult.indices, id: \.self) { index in
                             HStack {
-                                Button("\(data.result)") {
-                                    viewStore.send(.resultValueTapped(data.result))
+                                Button("\(viewStore.searchResult[index].result)") {
+                                    viewStore.send(.resultValueTapped(index))
                                 }
                                 .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                                 

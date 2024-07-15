@@ -12,12 +12,14 @@ import SwiftUI
 struct ResultDetailFeature {
     struct State: Equatable {
         var searchResult: IdentifiedArrayOf<ResultDetailModel>
+        var nowSeletedIndex: Int?
+        var nowShowingIndex: Int?
         @PresentationState var resultDetailSheetState: ResultDetailSheetFeature.State?
     }
     
     enum Action: Equatable {
         case newResultDataSuccess(data: [String])
-        case resultValueTapped(String)
+        case resultValueTapped(Int)
         case resultDetailSheetAction(PresentationAction<ResultDetailSheetFeature.Action>)
     }
     
@@ -28,10 +30,20 @@ struct ResultDetailFeature {
                 state.searchResult = IdentifiedArrayOf<ResultDetailModel>(uniqueElements: data.map {ResultDetailModel(id: UUID.init().uuidString, result: $0)})
                 return .none
                 
-            case .resultValueTapped(let value):
-                state.resultDetailSheetState = .init(userSeletedResult: value)
+            case .resultValueTapped(let index):
+                state.nowSeletedIndex = index
+                state.resultDetailSheetState = .init(userSeletedResult: state.searchResult[index].result)
                 return .none
                 
+            case .resultDetailSheetAction(.presented(.okBtnTapped)):
+                state.nowShowingIndex = state.nowSeletedIndex
+                state.nowSeletedIndex = nil
+                return .none
+                
+            case .resultDetailSheetAction(.presented(.cancelBtnTapped)):
+                state.nowShowingIndex = nil
+                state.nowSeletedIndex = nil
+                return .none
       
             default: return .none
             }
