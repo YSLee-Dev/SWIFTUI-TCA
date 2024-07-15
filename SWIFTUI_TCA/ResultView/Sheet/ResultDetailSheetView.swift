@@ -34,7 +34,7 @@ struct ResultDetailSheetView: View {
                 
                 HStack(spacing: 10) {
                     Button(action: {
-                        
+                        viewStore.send(.cancelBtnTapped)
                     }) {
                         Text("취소")
                             .foregroundColor(.black)
@@ -47,7 +47,7 @@ struct ResultDetailSheetView: View {
                     }
                     
                     Button(action: {
-                        
+                        viewStore.send(.okBtnTapped)
                     }) {
                         Text("확인")
                             .foregroundColor(.black)

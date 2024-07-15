@@ -9,6 +9,8 @@ import ComposableArchitecture
 import SwiftUI
 
 struct ResultDetailSheetFeature: Reducer {
+    @Dependency(\.dismiss) var dismiss
+    
     struct State: Equatable {
         var userSeletedResult: String
         
@@ -23,12 +25,17 @@ struct ResultDetailSheetFeature: Reducer {
     }
     
     enum Action: Equatable {
+        case okBtnTapped
+        case cancelBtnTapped
     }
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-                
+            case .cancelBtnTapped, .okBtnTapped:
+                return .run { send in
+                    await  self.dismiss()
+                }
             }
         }
     }
