@@ -84,7 +84,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<key>TCA_ Grammar_3 (Playground) 1.xcscheme</key>
 		<dict>
@@ -105,7 +105,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>0</integer>
 		</dict>
 		<key>TCA_ Grammar_4 (Playground) 1.xcscheme</key>
 		<dict>
@@ -175,7 +175,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>TCA_ Grammar_5playground (Playground) 1.xcscheme</key>
 		<dict>
@@ -197,6 +197,13 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>11</integer>
+		</dict>
+		<key>TCA_ Grammar_6 (Playground).xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>TCA_Grammar (Playground) 1.xcscheme</key>
 		<dict>
