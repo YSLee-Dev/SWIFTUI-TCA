@@ -56,6 +56,7 @@
 		FF39E6442C1833780022B8B2 /* ResultLoadProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultLoadProtocol.swift; sourceTree = "<group>"; };
 		FF39E6472C1835720022B8B2 /* Dependecy+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dependecy+.swift"; sourceTree = "<group>"; };
 		FF39E6492C1835BD0022B8B2 /* ResultLoadDependecyKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultLoadDependecyKey.swift; sourceTree = "<group>"; };
+		FF4326252C464AFF003B14D4 /* TCA_ Grammar_7.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "TCA_ Grammar_7.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FF4E625B2C33E11D005B3C3F /* ResultDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailModel.swift; sourceTree = "<group>"; };
 		FF51B3BE2C2D4E8500F96962 /* TCA_ Grammar_5.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "TCA_ Grammar_5.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FF51B3C02C2D565F00F96962 /* ResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailView.swift; sourceTree = "<group>"; };
@@ -200,19 +201,20 @@
 		FF84AF212BFF303100CCEEA7 /* SWIFTUI_TCA */ = {
 			isa = PBXGroup;
 			children = (
+				FF7C57622C0D9CF80092B76C /* ContentView */,
 				FF39E6412C1832FB0022B8B2 /* Dependency */,
 				FF7A277A2C16DFD200748749 /* ResultView */,
 				FF7C57652C0D9E880092B76C /* SearchView */,
-				FF7C57622C0D9CF80092B76C /* ContentView */,
 				FF9369862C04627C00FE5FBB /* TCA_ Grammar_1.playground */,
 				FF9004582C0858AE00EED08E /* TCA_ Grammar_2.playground */,
 				FFCBB2052C12F40400C9EE30 /* TCA_ Grammar_3.playground */,
 				FF8380552C216EB7006C853A /* TCA_ Grammar_4.playground */,
 				FF51B3BE2C2D4E8500F96962 /* TCA_ Grammar_5.playground */,
 				FF0A01762C368B6C00628B35 /* TCA_ Grammar_6.playground */,
+				FF4326252C464AFF003B14D4 /* TCA_ Grammar_7.playground */,
+				FF84AF262BFF303300CCEEA7 /* Assets.xcassets */,
 				FF7C576A2C0DA9420092B76C /* SWIFTUI_TCAFeature.swift */,
 				FF84AF222BFF303100CCEEA7 /* SWIFTUI_TCAApp.swift */,
-				FF84AF262BFF303300CCEEA7 /* Assets.xcassets */,
 				FF84AF282BFF303300CCEEA7 /* SWIFTUI_TCA.entitlements */,
 				FF84AF292BFF303300CCEEA7 /* Preview Content */,
 			);
