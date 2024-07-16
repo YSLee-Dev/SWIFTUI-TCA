@@ -120,11 +120,11 @@ let path: [Path] = [
 /// 스택 기반은 아래와 같은 순서로 구성
 /// 1. 기능들의 도메인 통합
 /// - Path로 불리는 새로운 Reducer를 정의하여, 스택에 정의 될 수 있는 모든 도메민을 추가시킴
-/// -> Path는 RootReducer 내부에 위치
+/// -> Path는 RootReducer 내부에 위치 (State는 Enum)
 /// -> 트리형의 열거형을 사용하는 방식과 동일 -> 모든 방식을 추가
 ///
 /// 2. Navigation 스택을 관리하는 State, Action 추가
-/// - 부모 State는 Enum으로 정의 후 StackState, StackAction을 준수하게 추가
+/// - 부모 Reducer의 State, Action에 StackState, StackAction을 준수하게 추가
 ///
 /// 3. ForEach를 통해 부모와 자녀의 Reducer를 연결, 통합함
 ///
