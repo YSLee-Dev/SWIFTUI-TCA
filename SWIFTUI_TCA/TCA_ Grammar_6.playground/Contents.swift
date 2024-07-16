@@ -111,3 +111,46 @@ let path: [Path] = [
 ///  - 자식 자체에서도 @Envioment 프로퍼티 래퍼의 Dismiss를 사용한 경우 내부에서 부모를 찾아서 Nil, false를 주입하여 Dismiss가 가능함
 ///  -> 단, 비동기 작업 등 복잡한 로직에서는 사용이 어렵기 때문에 View 내부에서만 사용하는걸 권장함
 ///  -> Reducer 내부에서 사용하는 Dismiss는 DismissEffect를 이용, 단, 비동기 작업 시 유의해야함
+///
+///  스택기반
+///  - 컬렉션 상태를 사용해 네비게이션을 모델링함
+///  - 1차원 데이터 컬렉션을 구성하여, SwiftUI에 전달 -> 딥링크가 가능
+/// - StatckState, StatckAction, ForEach등을 사용하여 구성
+///
+/// 스택 기반은 아래와 같은 순서로 구성
+/// 1. 기능들의 도메인 통합
+/// - Path로 불리는 새로운 Reducer를 정의하여, 스택에 정의 될 수 있는 모든 도메민을 추가시킴
+/// -> Path는 RootReducer 내부에 위치
+/// -> 트리형의 열거형을 사용하는 방식과 동일 -> 모든 방식을 추가
+///
+/// 2. Navigation 스택을 관리하는 State, Action 추가
+/// - 부모 State는 Enum으로 정의 후 StackState, StackAction을 준수하게 추가
+///
+/// 3. ForEach를 통해 부모와 자녀의 Reducer를 연결, 통합함
+///
+/// 4. 부모, 자식 View를 결합
+/// - NavigationStackStore를 이용함
+/// -> Path에는 Store를 Scope로 나누어서 사용
+/// -> destination은 State에 따른 View를 CaseLet으로 사용하여 정의
+/// - 컴파일 시 Path State는 모든 Case가 처리되었음을 보장함
+///
+/// 결합이 완료된 경우 Navigation 스택 내부에 바로 접근이 가능함
+/// - StackAction을 이용하여 패턴을 매칭하고, 진행함
+/// - StackAction에는 내부의 ID를 통해 자동으로 관리하며, ID를 통해 pop, 원소 접근 등이 가능함
+/// -> Array처럼 특정 Index에 있는 View에 바로 접근이 가능하며, 제거할 수도 있음
+///
+/// Dismiss는 Path에 popLast()를 사용하여, Dismiss 할 수 있음
+/// - 단, 해당 스택에 바로 접근이 가능해야하는데 이경우는 부모만 가능함
+/// - 자식이 바로 Dismiss 하는 법은 트리구조와 동일함
+///
+/// StatckState VS NavigationPath
+/// NavigationPath
+/// - SwiftUI에서 네비게이션 스택의 컨텐츠를 관리하고 데이터 모델링 시 사용
+/// - TCA에서는 NavigationPath를 사용하지 않고, StackState를 사용
+///
+/// NavigationPath는 타입이 제거되어 있기 때문에 Hashable 속성을 가진 모든 데이터를 넣을 수 있으며, 데이터 타입에 따라 View를 분리할 수도 있음
+/// - 단, 타입이 제거 되어 있기 때문에 스택의 마지막 값 제거, 개수 확인만 할 수 있을 뿐 Type과 관련된 메소드는 사용할 수 없음
+/// -> 특정 Index를 추출하거나, ForEach로 순환할 수 없음
+///
+/// TCA는 NavigationPath를 사용할 경우 전체 스택 데이터를 집계하기 어렵고, path 내부를 순회할 수 없기 때문에 자체 StackState를 사용함
+/// - StackState는 NavivationPath와 비슷한 용도로 사용되지만, 타입화 되어 있으며, 여러가지 속성을 사용할 수 있음
