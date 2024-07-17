@@ -8,7 +8,8 @@
 import Foundation
 import ComposableArchitecture
 
-struct SWIFTUI_TCAFeature: Reducer {
+@Reducer
+struct SWIFTUI_TCAFeature {
     struct State: Equatable {
         var contentView: ContentFeature.State
         var searchView: SearchViewFeature.State
@@ -26,15 +27,15 @@ struct SWIFTUI_TCAFeature: Reducer {
     var body: some Reducer<State, Action> {
         BindingReducer()
         
-        Scope(state: \.contentView, action: /Action.contentView) {
+        Scope(state: \.contentView, action: \.contentView) {
             ContentFeature()
         }
         
-        Scope(state: \.searchView, action: /Action.searchView) {
+        Scope(state: \.searchView, action: \.searchView) {
             SearchViewFeature()
         }
         
-        Scope(state: \.resultView, action: /Action.resultView) {
+        Scope(state: \.resultView, action: \.resultView) {
             ResultViewFeature()
         }
         
