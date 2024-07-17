@@ -13,26 +13,41 @@ struct SearchView: View {
     
     var body: some View {
         WithViewStore(store, observe: {$0}) {viewStore in
-            VStack {
+            VStack(alignment: .leading) {
                 HStack {
-                    TextField(text: viewStore.$firstNameValue) {
-                        Text("First Name")
-                    }
-                    
-                    TextField(text: viewStore.binding(
-                        get: \.lastNameValue,
-                        send: {.lastNameTFValueInserted($0)})) {
-                            Text("Last Namet")
-                        }
+                    Text("검색하고 싶은 인물의 성을 입력하세요.")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                    Spacer()
                 }
-                .padding(.bottom, 20)
+                .padding(.bottom, 30)
                 
-                Button("Search Start") {
-                    print("Btn Tapped")
-                    print(viewStore.firstNameValue, viewStore.lastNameValue)
-                    viewStore.send(.searchBtnTapped)
+                TextField(text: viewStore.$firstNameValue) {
+                    Text("입력")
                 }
-                .disabled(!viewStore.isBtnOn)
+                .padding(.leading, 10)
+                .frame(height: 50)
+                .background {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(.init(uiColor: .secondarySystemBackground))
+                }
+                
+                Spacer()
+                
+                Button(action: {
+                
+                }) {
+                    Text("확인")
+                        .foregroundColor(.black)
+                        .frame(width: UIScreen.main.bounds.size.width - 40, height: 50)
+                        .background {
+                            Color(uiColor: .secondarySystemBackground)
+                                .cornerRadius(15)
+                        }
+                      
+                }
+                
+                Spacer()
             }
             .padding(20)
         }
