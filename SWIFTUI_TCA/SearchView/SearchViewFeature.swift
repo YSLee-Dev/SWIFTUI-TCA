@@ -11,15 +11,12 @@ import ComposableArchitecture
 struct SearchViewFeature: Reducer {
     struct State: Equatable {
         @BindingState var firstNameValue: String = ""
-        var lastNameValue: String = ""
-        var isBtnOn: Bool = false
     }
     
     enum Action: BindableAction, Equatable {
         case lastNameTFValueInserted(String)
-        case btnIsEnableCheck
+        case okBtnTapped
         case  binding(BindingAction<State>)
-        case searchBtnTapped
     }
     
     var body: some Reducer<State, Action> {
@@ -27,17 +24,6 @@ struct SearchViewFeature: Reducer {
         
         Reduce { state, action in
             switch action {
-            case .lastNameTFValueInserted(let value):
-                state.lastNameValue = value
-                return .send(.btnIsEnableCheck)
-                
-            case .binding(\.$firstNameValue):
-                return .send(.btnIsEnableCheck)
-                
-            case .btnIsEnableCheck:
-                state.isBtnOn = !state.firstNameValue.isEmpty && !state.lastNameValue.isEmpty
-                return .none
-                
             default:
                 return .none
             }

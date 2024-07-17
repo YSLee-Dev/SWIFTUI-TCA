@@ -12,6 +12,8 @@
 		FF39E6452C1833780022B8B2 /* ResultLoadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF39E6442C1833780022B8B2 /* ResultLoadProtocol.swift */; };
 		FF39E6482C1835720022B8B2 /* Dependecy+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF39E6472C1835720022B8B2 /* Dependecy+.swift */; };
 		FF39E64A2C1835BD0022B8B2 /* ResultLoadDependecyKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF39E6492C1835BD0022B8B2 /* ResultLoadDependecyKey.swift */; };
+		FF4326272C4797F2003B14D4 /* SearchTwoStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4326262C4797F2003B14D4 /* SearchTwoStepView.swift */; };
+		FF4326292C479839003B14D4 /* SearchTwoStepFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4326282C479839003B14D4 /* SearchTwoStepFeature.swift */; };
 		FF4E625C2C33E11D005B3C3F /* ResultDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4E625B2C33E11D005B3C3F /* ResultDetailModel.swift */; };
 		FF51B3C12C2D565F00F96962 /* ResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF51B3C02C2D565F00F96962 /* ResultDetailView.swift */; };
 		FF51B3C32C2D566400F96962 /* ResultDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF51B3C22C2D566400F96962 /* ResultDetailFeature.swift */; };
@@ -57,6 +59,8 @@
 		FF39E6472C1835720022B8B2 /* Dependecy+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dependecy+.swift"; sourceTree = "<group>"; };
 		FF39E6492C1835BD0022B8B2 /* ResultLoadDependecyKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultLoadDependecyKey.swift; sourceTree = "<group>"; };
 		FF4326252C464AFF003B14D4 /* TCA_ Grammar_7.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "TCA_ Grammar_7.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		FF4326262C4797F2003B14D4 /* SearchTwoStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTwoStepView.swift; sourceTree = "<group>"; };
+		FF4326282C479839003B14D4 /* SearchTwoStepFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTwoStepFeature.swift; sourceTree = "<group>"; };
 		FF4E625B2C33E11D005B3C3F /* ResultDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailModel.swift; sourceTree = "<group>"; };
 		FF51B3BE2C2D4E8500F96962 /* TCA_ Grammar_5.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "TCA_ Grammar_5.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FF51B3C02C2D565F00F96962 /* ResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailView.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 			children = (
 				FF7C57662C0D9EA00092B76C /* SearchView.swift */,
 				FF7C57682C0D9EC50092B76C /* SearchViewFeature.swift */,
+				FF4326262C4797F2003B14D4 /* SearchTwoStepView.swift */,
+				FF4326282C479839003B14D4 /* SearchTwoStepFeature.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 				FF7A277E2C16DFFE00748749 /* ResultViewFeature.swift in Sources */,
 				FF51B3C32C2D566400F96962 /* ResultDetailFeature.swift in Sources */,
 				FF7C57672C0D9EA00092B76C /* SearchView.swift in Sources */,
+				FF4326292C479839003B14D4 /* SearchTwoStepFeature.swift in Sources */,
 				FF84AF252BFF303100CCEEA7 /* ContentView.swift in Sources */,
 				FF84AF232BFF303100CCEEA7 /* SWIFTUI_TCAApp.swift in Sources */,
 				FF6F81BE2C44DD2F0087B445 /* ResultDetailSheetView.swift in Sources */,
@@ -397,6 +404,7 @@
 				FF0A01792C37DEE400628B35 /* ResultDetailSheetFeature.swift in Sources */,
 				FF4E625C2C33E11D005B3C3F /* ResultDetailModel.swift in Sources */,
 				FF7A277C2C16DFE400748749 /* ResultView.swift in Sources */,
+				FF4326272C4797F2003B14D4 /* SearchTwoStepView.swift in Sources */,
 				FF39E6452C1833780022B8B2 /* ResultLoadProtocol.swift in Sources */,
 				FF7C576B2C0DA9420092B76C /* SWIFTUI_TCAFeature.swift in Sources */,
 			);

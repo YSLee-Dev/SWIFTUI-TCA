@@ -35,7 +35,7 @@ struct SearchView: View {
                 Spacer()
                 
                 Button(action: {
-                
+                    viewStore.send(.okBtnTapped)
                 }) {
                     Text("확인")
                         .foregroundColor(.black)
