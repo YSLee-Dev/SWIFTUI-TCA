@@ -5,14 +5,35 @@
 //  Created by 이윤수 on 7/17/24.
 //
 
-import SwiftUI
+import Foundation
+import ComposableArchitecture
 
-struct SearchTwoStepFeature: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+@Reducer
+struct SearchTwoStepFeature: Reducer {
+    struct State: Equatable {
+        @BindingState var lastNameValue: String = ""
+        var firstNameValue: String
+        var isBtnOn: Bool = false
     }
-}
-
-#Preview {
-    SearchTwoStepFeature()
+    
+    enum Action: BindableAction, Equatable {
+        case binding(BindingAction<State>)
+        case searchBtnTapped
+        case backBtnTapped
+    }
+    
+    var body: some Reducer<State, Action> {
+        BindingReducer()
+        
+        Reduce { state, action in
+            switch action {
+            case .binding(\.$lastNameValue):
+                state.isBtnOn = !state.firstNameValue.isEmpty && !state.lastNameValue.isEmpty
+                return .none
+                
+            default:
+                return .none
+            }
+        }
+    }
 }
