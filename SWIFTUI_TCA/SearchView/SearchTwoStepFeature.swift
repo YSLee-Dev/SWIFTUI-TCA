@@ -18,7 +18,7 @@ struct SearchTwoStepFeature: Reducer {
     
     enum Action: BindableAction, Equatable {
         case binding(BindingAction<State>)
-        case searchBtnTapped
+        case searchBtnTapped(String)
         case backBtnTapped
     }
     

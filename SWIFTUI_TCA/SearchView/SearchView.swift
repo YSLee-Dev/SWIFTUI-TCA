@@ -9,10 +9,10 @@ import SwiftUI
 import ComposableArchitecture
 
 struct SearchView: View {
-    let store: StoreOf<SearchViewFeature>
+    @State var store: StoreOf<SearchViewFeature>
     
     var body: some View {
-        WithViewStore(store, observe: {$0}) {viewStore in
+        NavigationStack(path: self.$store.scope(state: \.path, action: \.path), root: {
             VStack(alignment: .leading) {
                 HStack {
                     Text("검색하고 싶은 인물의 성을 입력하세요.")
@@ -22,7 +22,7 @@ struct SearchView: View {
                 }
                 .padding(.bottom, 30)
                 
-                TextField(text: viewStore.$firstNameValue) {
+                TextField(text: self.$store.firstNameValue) {
                     Text("입력")
                 }
                 .padding(.leading, 10)
@@ -35,7 +35,7 @@ struct SearchView: View {
                 Spacer()
                 
                 Button(action: {
-                    viewStore.send(.okBtnTapped)
+                    self.store.send(.okBtnTapped)
                 }) {
                     Text("확인")
                         .foregroundColor(.black)
@@ -44,16 +44,23 @@ struct SearchView: View {
                             Color(uiColor: .secondarySystemBackground)
                                 .cornerRadius(15)
                         }
-                      
                 }
                 
                 Spacer()
             }
             .padding(20)
-        }
-        
+            
+        }, destination: { store in
+            switch store.state {
+            case .searchTwoStepView:
+                if let store = store.scope(state: \.searchTwoStepView, action: \.searchTwoStepView) {
+                    SearchTwoStepView(store: store)
+                }
+            }
+        })
     }
 }
+
 
 #Preview {
     SearchView(

@@ -63,7 +63,7 @@ struct SearchTwoStepView: View {
                     }
                     
                     Button(action: {
-                        viewStore.send(.searchBtnTapped)
+                        viewStore.send(.searchBtnTapped(viewStore.firstNameValue + viewStore.lastNameValue))
                     }) {
                         Text("검색")
                             .foregroundColor(.black)
@@ -72,13 +72,15 @@ struct SearchTwoStepView: View {
                                 Color(uiColor: .secondarySystemBackground)
                                     .cornerRadius(15)
                             }
-                          
                     }
+                    .disabled(!viewStore.isBtnOn)
                 }
+               
                 
                 Spacer()
             }
             .padding(20)
+            .navigationBarHidden(true)
         }
     }
 }

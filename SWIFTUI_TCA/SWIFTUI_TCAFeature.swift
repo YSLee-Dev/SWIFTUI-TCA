@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 
 @Reducer
-struct SWIFTUI_TCAFeature {
+struct SWIFTUI_TCAFeature: Reducer {
     
     struct State: Equatable {
         var contentView: ContentFeature.State
@@ -44,32 +44,15 @@ struct SWIFTUI_TCAFeature {
             switch action {
             case .searchView(let searchView):
                 switch searchView {
-                
+                case .path(.element(id: _, action: .searchTwoStepView(.searchBtnTapped(let query)))):
+                    state.nowSeletedTabbarIndex = 2
+                    
+                    return .send(.resultView(.searchBtnTapped(query: query)))
+                    
                 default: return .none
                 }
                 
             default: return .none
-            }
-        }
-    }
-}
-
-private extension SWIFTUI_TCAFeature {
-    @Reducer
-    struct Path {
-        enum State {
-            
-        }
-        
-        enum Action {
-            
-        }
-        
-        var body: some Reducer<State, Action> {
-            Reduce { state, action in
-                switch action {
-                default : .none
-                }
             }
         }
     }
