@@ -22,6 +22,7 @@ struct SearchViewFeature: Reducer {
         case binding(BindingAction<State>)
         case path(StackAction<SearchViewPath.State, SearchViewPath.Action>)
         case searchFinished
+        case deepLinkForFirstNameInsert(String)
     }
     
     var body: some Reducer<State, Action> {
@@ -39,7 +40,15 @@ struct SearchViewFeature: Reducer {
                 
             case .searchFinished:
                 state.firstNameValue = ""
+                state.path.removeAll()
                 return .none
+                
+            case .deepLinkForFirstNameInsert(let value):
+                state.firstNameValue = value
+                return .run { send in
+                    try await Task.sleep(for: .microseconds(10))
+                    return await send(.okBtnTapped)
+                }
                 
             default:
                 return .none
