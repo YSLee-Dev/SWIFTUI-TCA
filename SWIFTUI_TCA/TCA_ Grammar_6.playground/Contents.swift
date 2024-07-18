@@ -122,6 +122,9 @@ let path: [Path] = [
 /// - Path로 불리는 새로운 Reducer를 정의하여, 스택에 정의 될 수 있는 모든 도메민을 추가시킴
 /// -> Path는 RootReducer 내부에 위치 (State는 Enum)
 /// -> 트리형의 열거형을 사용하는 방식과 동일 -> 모든 방식을 추가
+/// - Path의 각 State는 해당 View의 init을 책임지는데, 만약 해당 View가 의존적이지 않다면, 바로 init을 할 수 있음
+///
+///  - 위 작업을 통해 RootReducer -> PathReducer -> 하위 Reducer가 전부 연결되어, 자식의 Action을 호출하여 작업할 수 있음
 ///
 /// 2. Navigation 스택을 관리하는 State, Action 추가
 /// - 부모 Reducer의 State, Action에 StackState, StackAction을 준수하게 추가
@@ -134,10 +137,24 @@ let path: [Path] = [
 /// -> destination은 State에 따른 View를 CaseLet으로 사용하여 정의
 /// - 컴파일 시 Path State는 모든 Case가 처리되었음을 보장함
 ///
+/// - NavigationStack으로도 사용이 가능함
+/// -> NavigationStack의 path는 store를 scope로 나누어 사용
+/// -> 버튼 클릭 시 push,pop 등을 원하는 경우 NavigationLink를 사용함
+/// -> NavigationStack 또한 destination 정의가 필요함
+/// + 단, 위 NavigationStack을 사용할 때에는 Reducer의 State가 @ObservableState 매크로를 준수하고 있어야 하며, Store는 ViewStore로 변환하지 않고, @State 프로퍼티 래퍼를 붙여서 사용함
+///
 /// 결합이 완료된 경우 Navigation 스택 내부에 바로 접근이 가능함
 /// - StackAction을 이용하여 패턴을 매칭하고, 진행함
 /// - StackAction에는 내부의 ID를 통해 자동으로 관리하며, ID를 통해 pop, 원소 접근 등이 가능함
 /// -> Array처럼 특정 Index에 있는 View에 바로 접근이 가능하며, 제거할 수도 있음
+///
+/// - 부모 Reducer에 있는 Path는 State와 연결되어 있기 때문에 Body 내부에서 사용할 수 있음
+/// -> StackAction은 Path.State, Path.Action을 전부 가지고 있음
+/// -> StackAction을 통해 특정 Action이 일어날 때 State를 변경하거나 Push/dismiss 할 수 있음
+///
+/// Element(id_, action:)
+/// - 해당 ID의 Stack에 접근하여, Stack Action 값에 접근
+/// - ID 값은 자동으로 생성되기 때문에 개발자는 _로만 표현하여 사용
 ///
 /// Dismiss는 Path에 popLast()를 사용하여, Dismiss 할 수 있음
 /// - 단, 해당 스택에 바로 접근이 가능해야하는데 이경우는 부모만 가능함
