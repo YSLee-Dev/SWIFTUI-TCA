@@ -18,10 +18,10 @@ struct SearchViewFeature: Reducer {
     }
     
     enum Action: BindableAction, Equatable {
-        case lastNameTFValueInserted(String)
         case okBtnTapped
-        case  binding(BindingAction<State>)
+        case binding(BindingAction<State>)
         case path(StackAction<SearchViewPath.State, SearchViewPath.Action>)
+        case searchFinished
     }
     
     var body: some Reducer<State, Action> {
@@ -35,7 +35,10 @@ struct SearchViewFeature: Reducer {
                 
             case .path(.element(id: _, action: .searchTwoStepView(.backBtnTapped))), .path(.element(id: _, action: .searchTwoStepView(.searchBtnTapped))):
                 state.path.removeLast()
+                return .none
                 
+            case .searchFinished:
+                state.firstNameValue = ""
                 return .none
                 
             default:

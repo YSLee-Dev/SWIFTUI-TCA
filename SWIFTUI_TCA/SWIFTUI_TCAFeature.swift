@@ -47,7 +47,10 @@ struct SWIFTUI_TCAFeature: Reducer {
                 case .path(.element(id: _, action: .searchTwoStepView(.searchBtnTapped(let query)))):
                     state.nowSeletedTabbarIndex = 2
                     
-                    return .send(.resultView(.searchBtnTapped(query: query)))
+                    return .merge(
+                        .send(.resultView(.searchBtnTapped(query: query))),
+                        .send(.searchView(.searchFinished))
+                    )
                     
                 default: return .none
                 }
