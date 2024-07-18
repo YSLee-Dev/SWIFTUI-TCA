@@ -52,6 +52,21 @@ struct ResultDetailView: View {
                             ResultDetailSheetView(store: store)
                         }
                     }
+                    .padding(.bottom, 20)
+                    
+                    Button(action: {
+                        self.store.send(.researchBtnTapped)
+                    }) {
+                        if viewStore.nowShowingIndex != nil {
+                            Text("선택한 결과를 기반으로 다시 검색하기")
+                                .foregroundColor(.black)
+                                .frame(width: UIScreen.main.bounds.size.width - 40, height: 50)
+                                .background {
+                                    Color(uiColor: .secondarySystemBackground)
+                                        .cornerRadius(15)
+                                }
+                        }
+                        }
                 }
             }
         }

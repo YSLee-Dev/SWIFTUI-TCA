@@ -55,6 +55,19 @@ struct SWIFTUI_TCAFeature: Reducer {
                 default: return .none
                 }
                 
+            case .resultView(let resultView):
+                switch resultView {
+                case .resultDetailAction(.researchBtnTapped):
+                    if let resultDetailState = state.resultView.resultDetailState,
+                       let index = resultDetailState.nowShowingIndex {
+                        state.nowSeletedTabbarIndex = 1
+                        return .send(.searchView(.deepLinkForFirstNameInsert(resultDetailState.searchResult[index].result)))
+                    } else {
+                        return .none
+                    }
+                default: return .none
+                }
+                
             default: return .none
             }
         }

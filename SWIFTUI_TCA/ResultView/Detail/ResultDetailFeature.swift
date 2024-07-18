@@ -21,6 +21,7 @@ struct ResultDetailFeature {
         case newResultDataSuccess(data: [String])
         case resultValueTapped(Int)
         case resultDetailSheetAction(PresentationAction<ResultDetailSheetFeature.Action>)
+        case researchBtnTapped
     }
     
     var body: some Reducer<State, Action> {
