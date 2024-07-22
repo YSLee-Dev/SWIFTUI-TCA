@@ -42,3 +42,59 @@ import SwiftUI
 /// ObservableState는 매크로로, Reducer 내부 State에 붙일 경우 State를 Observable하게 함
 /// - ViewStore, withViewStore를 작업하지 않고도 바로 View에서 사용이 가능함
 /// -> 단, iOS17부터만 바로 사용 가능하며, iOS16 이하는 withPerceptionTracking{}로 감싼 뷰를 사용해야함
+///
+/// ResultBuilder
+/// - 속성 중 하나로 객체에서 사용할 수 있고, 중첩된 데이터 구조를 만드는데 유용함
+/// - 일종의 매크로 같은 성격을 가지고 있기 때문에 컴파일시 코드를 자동으로 수정함
+/// - 여러 함수를 통해 여러 데이터를 한번에 묶는 역할을 수행함
+/// - 다른 타입을 특정 타입으로 변환할 수 있고, 옵셔널, if, for 등 구문 사용이 가능함 (값은 클로저로 추가)
+/// - SwiftUI의 Body도 내부에서 ResultBuilder를 사용한 ViewBuilder를 사용 중임
+/// - resultBuilder를 사용하면 불변의 값으로 처리되기 때문에 append와 같은 메서드는 사용할 수 없음 (새로운 배열을 생성해야 함)
+/// - return 키워드를 생략함
+
+struct Country {
+    var name: String
+}
+
+@resultBuilder
+struct CountryBuilder {
+    static func buildBlock(_ components: [Country]...) -> [Country] {
+        Array(components.joined())
+    }
+    
+    static func buildExpression(_ expression: Country) -> [Country] {
+        [expression]
+    }
+    
+    static func buildExpression(_ expression: [Country]) -> [Country] {
+        expression
+    }
+}
+
+@CountryBuilder var list: [Country] {
+    Country(name: "한국")
+    Country(name: "일본")
+    Country(name: "미국")
+    Country(name: "중국")
+    
+    [
+        Country(name: "호주"),
+        Country(name: "영국"),
+        Country(name: "홍콩")
+    ]
+}
+
+// list.append(Country(name: "캐나다")) 오류 발생
+
+print(list)
+
+/// ViewBuilder
+/// - 여러 상태 값에 따라서 여러 뷰를 반환하고 싶을 때 사용
+/// -> 클로저에 childView를 구상하거나 View를 나열할 때 주로 사용
+///
+/// some View는 기본적으로 하나의 view만 반환할 수 있음
+/// - AnyView를 통해 모든 View를 내보낼 수는 있지만 SwiftUI의 내부 구조를 알 수 없기에 권장되지 않음
+/// -> ViewBuilder를 사용하면 여러개의 View를 한번에 리턴, 나열할 수 있게 됨
+/// -> ViewBuilder가 ResultBuiler를 준수하기 때문
+///
+/// 사용자 정의 View에서도 내부 View는 클로저로 전달받아야 하며, 이때 @ViewBuilder를 준수해야함
